@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chen Yi-Zhong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    :root {
+      --green:  #1B813E;
+      --orange: #E98B2A;
+      --ink:    #16160E;
+      --ink2:   #3A3A28;
+      --ink3:   #7A7A5C;
+      --bg:     #F4F5F1;
+      --line:   #DCDDD6;
+      --col:    860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Gill Sans', 'Gill Sans MT', 'Gill Sans Nova', 'Trebuchet MS', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.lang-zh {
+      font-family: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      line-height: 1.95;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── LANG ── */
+    [data-en],[data-zh],[data-es] { display: none; }
+    body.lang-en [data-en] { display: revert; }
+    body.lang-zh [data-zh] { display: revert; }
+    body.lang-es [data-es] { display: revert; }
+    span[data-en],span[data-zh],span[data-es] { display: none; }
+    body.lang-en span[data-en] { display: inline; }
+    body.lang-zh span[data-zh] { display: inline; }
+    body.lang-es span[data-es] { display: inline; }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .header-inner {
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .site-name {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    body.lang-zh .site-name { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.06em; }
+    .site-name:hover { color: var(--green); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .h-nav-link {
+      font-size: 13px;
+      color: var(--ink3);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      transition: color 0.15s;
+    }
+    .h-nav-link:hover, .h-nav-link.active { color: var(--ink); }
+    .h-nav-link.active { text-decoration: underline; text-decoration-color: var(--green); text-underline-offset: 3px; }
+
+    .lang-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+    }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 12px;
+      color: var(--ink3); padding: 0;
+      transition: color 0.15s;
+    }
+    .lang-btn:hover { color: var(--ink); }
+    .lang-btn.on { color: var(--green); font-weight: 500; }
+    .lang-sep { color: var(--line); }
+
+    /* ── VIEWS ── */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ── MAIN COLUMN ── */
+    .col {
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ══════════════════════════════════════
+       HOME VIEW
+    ══════════════════════════════════════ */
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3.5rem;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 2rem;
+      align-items: end;
+    }
+    .hero-name {
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    body.lang-zh .hero-name { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.04em; }
+    .hero-role {
+      font-size: 13.5px;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.04em;
+    }
+    .hero-bio {
+      font-size: 15px;
+      color: var(--ink2);
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 520px;
+    }
+    .hero-links {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+      flex-wrap: wrap;
+    }
+    .hero-link {
+      font-size: 12.5px;
+      color: var(--ink3);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+    }
+    .hero-link i { font-size: 15px; }
+    .hero-link:hover { color: var(--green); }
+
+    /* avatar box */
+    .hero-avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 4px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink3);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      overflow: hidden;
+      justify-self: end;
+      align-self: start;
+      margin-top: 0.5rem;
+    }
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── PROJECTS SECTION ── */
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      padding: 2.75rem 0 1.5rem;
+    }
+    body.lang-zh .section-label { text-transform: none; letter-spacing: 0.06em; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-bottom: 1.5px;
+    }
+    .project-card {
+      background: var(--bg);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .project-card:hover { background: #F4F4EE; }
+    .project-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .project-media {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #E8E8E0;
+      overflow: hidden;
+      position: relative;
+    }
+    .project-media iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+    .project-media-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--ink3);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+    .project-media-placeholder i {
+      font-size: 28px;
+      color: var(--line);
+    }
+    .placeholder-tag {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+    .placeholder-tag span {
+      background: rgba(0,0,0,0.06);
+      padding: 2px 7px;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .project-info {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+    .project-status {
+      font-size: 11px;
+      color: var(--green);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .live-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: blink 2.4s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+    .project-title {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    body.lang-zh .project-title { font-family: 'Zen Kaku Gothic New', sans-serif; }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--ink3);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .project-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 1rem; }
+    .project-chip {
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border: 1px solid var(--line);
+      color: var(--ink3);
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .project-actions { display: flex; gap: 1rem; }
+    .project-action {
+      font-size: 12px;
+      color: var(--green);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .project-action i { font-size: 14px; }
+    .project-action:hover { text-decoration: underline; text-underline-offset: 2px; }
+    .project-expand-hint {
+      font-size: 11px;
+      color: var(--ink3);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .project-expand-hint i { font-size: 13px; transition: transform 0.2s; }
+    .project-card.open .project-expand-hint i { transform: rotate(45deg); color: var(--green); }
+
+    /* expanded body */
+    .project-body {
+      display: none;
+      padding: 0 1.5rem 1.75rem;
+      border-top: 1px solid var(--line);
+      margin-top: 0.5rem;
+    }
+    .project-card.open .project-body { display: block; }
+    .project-body-text {
+      font-size: 13.5px;
+      color: var(--ink2);
+      font-weight: 300;
+      line-height: 1.85;
+      padding-top: 1.25rem;
+    }
+    .project-body-text p + p { margin-top: 0.9em; }
+
+    /* ── WRITING SECTION (home) ── */
+    .writing-list { margin-bottom: 4rem; }
+    .writing-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 90px;
+      gap: 0 1rem;
+      align-items: baseline;
+      padding: 0.9rem 0;
+      border-top: 1px solid var(--line);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .writing-row:last-child { border-bottom: 1px solid var(--line); }
+    .writing-row:hover .writing-title { color: var(--green); }
+    .writing-date { font-size: 12px; color: var(--ink3); font-variant-numeric: tabular-nums; }
+    .writing-title {
+      font-size: 14px;
+      color: var(--ink);
+      font-weight: 400;
+      transition: color 0.15s;
+    }
+    body.lang-zh .writing-title { font-family: 'Zen Kaku Gothic New', sans-serif; }
+    .writing-tag {
+      font-size: 11px;
+      color: var(--ink3);
+      text-align: right;
+    }
+    .see-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      color: var(--ink3);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      margin-top: 1.25rem;
+      transition: color 0.15s;
+    }
+    .see-all i { font-size: 13px; }
+    .see-all:hover { color: var(--green); }
+
+    /* ══════════════════════════════════════
+       NOTES VIEW (full blog list)
+    ══════════════════════════════════════ */
+    .blog-intro {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--line);
+      max-width: 540px;
+    }
+    .blog-intro-sub {
+      font-size: 13px;
+      color: var(--ink3);
+      margin-bottom: 0.3rem;
+    }
+    .blog-intro-line {
+      font-size: 14.5px;
+      color: var(--ink2);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .year-group { margin-top: 2.5rem; }
+    .year-label {
+      font-size: 11px;
+      color: var(--ink3);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .year-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .post-row { border-bottom: 1px solid var(--line); }
+    .post-summary {
+      padding: 1.1rem 0;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 0 1rem;
+      align-items: baseline;
+    }
+    .post-summary:hover .post-title { color: var(--green); }
+    .post-date { font-size: 12px; color: var(--ink3); letter-spacing: 0.04em; padding-top: 2px; font-variant-numeric: tabular-nums; }
+    .post-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
+      transition: color 0.15s;
+    }
+    body.lang-zh .post-title { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.04em; }
+    .post-excerpt {
+      grid-column: 2;
+      font-size: 13px;
+      color: var(--ink3);
+      line-height: 1.6;
+      margin-top: 2px;
+      font-weight: 300;
+    }
+    .post-toggle {
+      grid-column: 3;
+      grid-row: 1;
+      font-size: 13px;
+      color: var(--ink3);
+      transition: transform 0.2s, color 0.15s;
+    }
+    .post-row.open .post-toggle { transform: rotate(45deg); color: var(--green); }
+    .post-body {
+      display: none;
+      padding: 0 0 2rem 72px;
+    }
+    .post-row.open .post-body { display: block; }
+    .post-body-text {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+    .post-body-text p + p { margin-top: 0.9em; }
+
+    .post-embed {
+      background: #1A1A14;
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 1.25rem 0;
+    }
+    .post-embed iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
+    .post-embed-caption {
+      padding: 0.5rem 1rem;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.04em;
+    }
+
+    .post-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 1rem 0; }
+    .post-chip {
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border: 1px solid var(--line);
+      color: var(--ink3);
+    }
+    .post-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem; }
+    .post-cite {
+      font-size: 11.5px;
+      color: var(--ink3);
+      margin-top: 1.25rem;
+      line-height: 1.6;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+    .post-cite em { font-style: italic; }
+    .post-action {
+      font-size: 12.5px;
+      color: var(--green);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+    .post-action i { font-size: 14px; }
+    .post-action:hover { border-color: var(--green); }
+
+    /* ══════════════════════════════════════
+       ABOUT VIEW
+    ══════════════════════════════════════ */
+    .about-view { padding: 3.5rem 0 5rem; max-width: 600px; }
+    .about-view h1 {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.01em;
+    }
+    body.lang-zh .about-view h1 { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.06em; }
+    .about-view .tagline {
+      font-size: 13.5px;
+      color: var(--orange);
+      margin-bottom: 2.25rem;
+    }
+    .about-prose {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+    .about-prose p + p { margin-top: 1em; }
+    .about-prose a { color: var(--green); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+    .about-prose a:hover { border-color: var(--green); }
+
+    .about-h {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 1rem;
+      margin-top: 2.25rem;
+    }
+    body.lang-zh .about-h { text-transform: none; letter-spacing: 0.06em; }
+
+    .plain-exp { margin-bottom: 0; }
+    .plain-exp-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0 1.5rem;
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .plain-exp-row:last-child { border-bottom: 1px solid var(--line); }
+    .plain-date { color: var(--ink3); font-weight: 300; padding-top: 1px; }
+    .plain-role { color: var(--ink); font-weight: 400; }
+    .plain-co { color: var(--ink3); font-size: 12px; margin-top: 1px; }
+    .now-dot { color: var(--orange); margin-right: 4px; }
+
+    .lang-plain { display: flex; flex-direction: column; }
+    .lang-row-plain {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.55rem 0; border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .lang-row-plain:last-child { border-bottom: 1px solid var(--line); }
+    .lang-row-plain span:last-child { color: var(--ink3); font-size: 12px; }
+
+    .about-links { display: flex; flex-direction: column; gap: 0.65rem; }
+    .about-link {
+      font-size: 13px;
+      color: var(--ink2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.15s;
+    }
+    .about-link i { font-size: 15px; color: var(--ink3); }
+    .about-link:hover { color: var(--green); }
+    .about-link:hover i { color: var(--green); }
+
+    .about-quote {
+      margin: 2.5rem 0;
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--green);
+      font-size: 14px;
+      color: var(--ink2);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.75;
+    }
+    body.lang-zh .about-quote { font-style: normal; }
+    .about-quote cite {
+      display: block;
+      font-style: normal;
+      font-size: 11.5px;
+      color: var(--ink3);
+      margin-top: 0.5rem;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 1.25rem 0;
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: var(--ink3);
+    }
+    .footer-inner a { color: var(--ink3); text-decoration: none; }
+    .footer-inner a:hover { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      :root { --col: 100%; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-avatar { display: none; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card.wide { grid-column: 1; }
+      .writing-row { grid-template-columns: 48px 1fr; }
+      .writing-tag { display: none; }
+      .plain-exp-row { grid-template-columns: 80px 1fr; }
+      .post-summary { grid-template-columns: 48px 1fr auto; }
+    }
+  </style>
+</head>
+<body class="lang-en">
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="site-name" onclick="showView('home',event)">
+      <span data-en>Chen Yi-Zhong</span>
+      <span data-zh>陳一中</span>
+      <span data-es>Chen Yi-Zhong</span>
+    </a>
+    <div class="header-right">
+      <button class="h-nav-link active" id="tab-home" onclick="showView('home',event)">
+        <span data-en>Home</span><span data-zh>首頁</span><span data-es>Inicio</span>
+      </button>
+      <button class="h-nav-link" id="tab-about" onclick="showView('about',event)">
+        <span data-en>About</span><span data-zh>關於</span><span data-es>Sobre mí</span>
+      </button>
+      <button class="h-nav-link" id="tab-notes" onclick="showView('notes',event)">
+        <span data-en>Notes</span><span data-zh>筆記</span><span data-es>Notas</span>
+      </button>
+      <div class="lang-row">
+        <button class="lang-btn on" id="opt-en" onclick="setLang('en')">EN</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="opt-zh" onclick="setLang('zh')">中</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" id="opt-es" onclick="setLang('es')">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     HOME VIEW
+════════════════════════════════════════ -->
+<div class="view active" id="view-home">
+  <div class="col">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-name">
+          <span data-en>Chen Yi-Zhong</span>
+          <span data-zh>陳一中</span>
+          <span data-es>Chen Yi-Zhong</span>
+        </div>
+        <div class="hero-role">
+          <span data-en>M.S. Candidate · NTUT Information Security · New Taipei, Taiwan</span>
+          <span data-zh>台北科技大學資訊安全系碩士生 · 新北市，台灣</span>
+          <span data-es>Candidato a Máster · NTUT Seguridad de la Información · Nueva Taipei, Taiwán</span>
+        </div>
+        <p class="hero-bio">
+          <span data-en>Researching safety layers for robot systems — interested in Physical AI, digital twins, and the sim-to-real gap. Currently building DAM, a detachable action monitor that sits between any robot policy and its hardware.</span>
+          <span data-zh>研究機器人系統的安全層——對 Physical AI、數位孿生與模擬到真實的落差感興趣。目前在做 DAM，一個插在任何機器人策略與硬體之間的可拆卸動作監控器。</span>
+          <span data-es>Construyo sistemas robóticos seguros — investigando Physical AI, gemelos digitales y la brecha entre simulación y mundo real. Actualmente trabajando en DAM, una capa de seguridad desmontable para cualquier política robótica.</span>
+        </p>
+        <div class="hero-links">
+          <a href="https://github.com/ez945y" target="_blank" class="hero-link">
+            <i class="ti ti-brand-github"></i>GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/mikechenyz/" target="_blank" class="hero-link">
+            <i class="ti ti-brand-linkedin"></i>LinkedIn
+          </a>
+          <a href="mailto:ez945y@gmail.com" class="hero-link">
+            <i class="ti ti-mail"></i>ez945y@gmail.com
+          </a>
+          <a href="./YIZHONG_CHEN_CV.pdf" target="_blank" class="hero-link">
+            <i class="ti ti-download"></i>
+            <span data-en>Resume</span><span data-zh>履歷</span><span data-es>CV</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-avatar" id="hero-avatar-box">
+        <!-- drop a photo at ./photo.jpg to replace this placeholder -->
+        <span style="font-size:11px;letter-spacing:0.06em;color:var(--ink3)">PHOTO</span>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section-label">
+      <span data-en>Projects</span><span data-zh>專案</span><span data-es>Proyectos</span>
+    </div>
+
+    <!-- DAM — wide card with iframe -->
+    <div class="project-grid">
+      <div class="project-card wide" id="proj-dam" onclick="toggleProject('proj-dam')">
+        <div class="project-media">
+          <iframe
+            src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7476473475638165504?compact=1"
+            frameborder="0"
+            allowfullscreen
+            title="DAM — CBF coordination demo"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div class="project-info">
+          <div class="project-status"><span class="live-dot"></span>
+            <span data-en>Ongoing</span><span data-zh>進行中</span><span data-es>En curso</span>
+          </div>
+          <div class="project-title">
+            <span data-en>Detachable Action Monitor (DAM)</span>
+            <span data-zh>可拆卸動作監控器（DAM）</span>
+            <span data-es>Monitor de Acción Desmontable (DAM)</span>
+          </div>
+          <div class="project-desc">
+            <span data-en>A safety layer inserted between any robot policy and its hardware. Intercepts every proposed action through an L0–L4 guard stack — without modifying the model or hardware drivers.</span>
+            <span data-zh>插在任何機器人策略與硬體之間的安全層，透過 L0–L4 防護堆疊攔截每個提議動作，完全不修改模型或硬體驅動程式。</span>
+            <span data-es>Una capa de seguridad entre cualquier política robótica y el hardware. Intercepta cada acción propuesta a través de un stack de guardia L0–L4 — sin modificar el modelo ni los drivers.</span>
+          </div>
+          <div class="project-chips">
+            <span class="project-chip">ROS2</span>
+            <span class="project-chip">C++</span>
+            <span class="project-chip">Isaac Sim</span>
+            <span class="project-chip">CBF</span>
+            <span class="project-chip">Physical AI Safety</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-actions">
+              <a href="https://github.com/ez945y/DAM" target="_blank" class="project-action" onclick="event.stopPropagation()">
+                <i class="ti ti-brand-github"></i>GitHub
+              </a>
+            </div>
+            <span class="project-expand-hint">
+              <span data-en>Details</span><span data-zh>詳細</span><span data-es>Detalles</span>
+              <i class="ti ti-plus"></i>
+            </span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-body-text">
+            <p>
+              <span data-en>The clip above is a multi-robot coordination demo using Control Barrier Functions. Safe behaviors — yielding, sidestepping, passing — emerge purely from optimization constraints, with no hand-coded rules and no communication between robots.</span>
+              <span data-zh>上方影片是使用控制障礙函數（CBF）的多機器人協調展示。讓路、閃避、穿越等安全行為，純粹從最佳化約束中自然浮現——不需要手寫規則，機器人之間也無需溝通。</span>
+              <span data-es>El clip de arriba es una demo de coordinación multi-robot usando Control Barrier Functions. Los comportamientos seguros — ceder el paso, esquivar, cruzar — emergen puramente de restricciones de optimización, sin reglas codificadas ni comunicación entre robots.</span>
+            </p>
+            <p>
+              <span data-en>DAM also includes a sensor validation layer: checking whether incoming data is consistent and plausible before any action is taken. Strong light can blind a vision system; ultrasonic resonance can confuse an IMU — a perfect model still fails if its inputs are compromised.</span>
+              <span data-zh>DAM 也包含感測器驗證層：在採取任何動作之前，先確認輸入數據是否一致且合理。強光可使視覺失盲，超音波共振可干擾 IMU——就算模型本身完美，輸入被汙染就會失敗。</span>
+              <span data-es>DAM también incluye una capa de validación de sensores: verifica si los datos entrantes son consistentes y plausibles antes de que se tome alguna acción. La luz intensa puede cegar la visión; la resonancia ultrasónica puede confundir un IMU — un modelo perfecto falla si sus entradas están comprometidas.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NPU + Robot Learning — two half cards -->
+    <div class="project-grid">
+      <div class="project-card" id="proj-npu" onclick="toggleProject('proj-npu')">
+        <div class="project-info">
+          <div class="project-title">
+            <span data-en>NPU Vision Platform</span>
+            <span data-zh>NPU 視覺平台</span>
+            <span data-es>Plataforma de Visión NPU</span>
+          </div>
+          <div class="project-desc">
+            <span data-en>Industry-academia project at Brinno. Edge NPU image recognition integrated into a device management platform — exhibited at three international trade shows.</span>
+            <span data-zh>在 Brinno 的產學合作。邊緣 NPU 影像辨識整合進設備管理平台，於三個國際展覽中展出。</span>
+            <span data-es>Proyecto academia-empresa en Brinno. Reconocimiento de imagen NPU integrado en una plataforma de gestión — exhibido en tres ferias internacionales.</span>
+          </div>
+          <div class="project-chips">
+            <span class="project-chip">Next.js</span>
+            <span class="project-chip">FastAPI</span>
+            <span class="project-chip">NPU</span>
+            <span class="project-chip">AWS EC2</span>
+          </div>
+          <div class="project-footer">
+            <div></div>
+            <span class="project-expand-hint">
+              <span data-en>Details</span><span data-zh>詳細</span><span data-es>Detalles</span>
+              <i class="ti ti-plus"></i>
+            </span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-body-text">
+            <p>
+              <span data-en>Integrated training and deployment of low-power NPU image recognition models into an all-in-one device management platform. I worked on the AI-to-web layer — Next.js frontend, FastAPI backend, containerized on AWS EC2.</span>
+              <span data-zh>將低功耗 NPU 影像辨識模型的訓練與部署整合進全合一設備管理平台。我負責 AI 與網頁的整合層——Next.js 前端、FastAPI 後端，Docker 容器化部署於 AWS EC2。</span>
+              <span data-es>Integré el entrenamiento y despliegue de modelos NPU de bajo consumo en una plataforma de gestión todo-en-uno. Trabajé en la capa AI-to-web — frontend Next.js, backend FastAPI, en AWS EC2.</span>
+            </p>
+            <p>
+              <span data-en>Running a live product at actual trade show booths — Embedded World 2025 & 2026 (Nuremberg), Computex 2025 (Taipei), IBC 2025 (Amsterdam) — is a different kind of stress test than a staging environment.</span>
+              <span data-zh>在真實展覽攤位上運行產品——Embedded World 2025 & 2026（紐倫堡）、Computex 2025（台北）、IBC 2025（阿姆斯特丹）——是與 staging 環境完全不同類型的壓力測試。</span>
+              <span data-es>Ejecutar un producto en stands reales — Embedded World 2025 & 2026 (Núremberg), Computex 2025 (Taipei), IBC 2025 (Ámsterdam) — es un tipo de prueba de estrés muy diferente a un staging environment.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" id="proj-rl" onclick="toggleProject('proj-rl')">
+        <div class="project-info">
+          <div class="project-status"><span class="live-dot"></span>
+            <span data-en>Ongoing</span><span data-zh>進行中</span><span data-es>En curso</span>
+          </div>
+          <div class="project-title">
+            <span data-en>Robot Learning Journal</span>
+            <span data-zh>機器人學習實驗記錄</span>
+            <span data-es>Diario de Aprendizaje Robótico</span>
+          </div>
+          <div class="project-desc">
+            <span data-en>Experiments with RL, imitation learning, and digital twins using Isaac Lab and LeRobot — documented as a living log.</span>
+            <span data-zh>使用 Isaac Lab 與 LeRobot 實驗強化學習、模仿學習與數位孿生——持續更新的實驗記錄。</span>
+            <span data-es>Experimentos con RL, aprendizaje por imitación y gemelos digitales usando Isaac Lab y LeRobot — documentados como log en vivo.</span>
+          </div>
+          <div class="project-chips">
+            <span class="project-chip">Isaac Lab</span>
+            <span class="project-chip">LeRobot</span>
+            <span class="project-chip">RL / IL</span>
+          </div>
+          <div class="project-footer">
+            <div class="project-actions">
+              <a href="https://github.com/ez945y" target="_blank" class="project-action" onclick="event.stopPropagation()">
+                <i class="ti ti-brand-github"></i>GitHub
+              </a>
+            </div>
+            <span class="project-expand-hint">
+              <span data-en>Details</span><span data-zh>詳細</span><span data-es>Detalles</span>
+              <i class="ti ti-plus"></i>
+            </span>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-body-text">
+            <p>
+              <span data-en>A living document covering RL environments in Isaac Lab, imitation learning with LeRobot, and the gap between what works in simulation and what survives contact with reality.</span>
+              <span data-zh>持續更新的記錄，涵蓋 Isaac Lab 中的 RL 環境、使用 LeRobot 的模仿學習，以及模擬中有效的方法與現實接觸後能存活的方法之間的落差。</span>
+              <span data-es>Un documento vivo que cubre entornos RL en Isaac Lab, aprendizaje por imitación con LeRobot, y la brecha entre lo que funciona en simulación y lo que sobrevive el contacto con la realidad.</span>
+            </p>
+            <p>
+              <span data-en>I'm particularly interested in digital twins not just as training environments, but as continuous monitors of real-world robot behavior — a bridge between what the model expects and what's actually happening.</span>
+              <span data-zh>我對數位孿生特別感興趣——不只是訓練環境，而是持續監控真實世界機器人行為的工具，連結模型的預期與實際發生的狀況。</span>
+              <span data-es>Me interesa especialmente el uso de gemelos digitales no solo como entornos de entrenamiento, sino como monitores continuos del comportamiento real del robot — un puente entre lo que el modelo espera y lo que ocurre en la realidad.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Writing (recent notes) -->
+    <div class="section-label" style="margin-top:3rem;">
+      <span data-en>Recent Notes</span><span data-zh>近期筆記</span><span data-es>Notas Recientes</span>
+    </div>
+    <div class="writing-list">
+      <div class="writing-row" onclick="openNote('p-cbf',event)">
+        <span class="writing-date">Jun 2026</span>
+        <span class="writing-title">
+          <span data-en>Why don't these robots crash into each other?</span>
+          <span data-zh>這些機器人為什麼不會互相撞？</span>
+          <span data-es>¿Por qué estos robots no chocan entre sí?</span>
+        </span>
+        <span class="writing-tag">DAM · CBF</span>
+      </div>
+      <div class="writing-row" onclick="openNote('p-sensor',event)">
+        <span class="writing-date">Jun 2026</span>
+        <span class="writing-title">
+          <span data-en>What if attackers target the sensors, not the AI?</span>
+          <span data-zh>如果攻擊者瞄準的是感測器，而不是 AI？</span>
+          <span data-es>¿Y si los atacantes apuntan a los sensores, no a la IA?</span>
+        </span>
+        <span class="writing-tag">DAM · Security</span>
+      </div>
+    </div>
+    <button class="see-all" onclick="showView('notes',event)">
+      <span data-en>All notes</span><span data-zh>所有筆記</span><span data-es>Ver todas</span>
+      <i class="ti ti-arrow-right"></i>
+    </button>
+
+    <div style="height:5rem;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     NOTES VIEW
+════════════════════════════════════════ -->
+<div class="view" id="view-notes">
+  <div class="col">
+
+    <div class="blog-intro">
+      <div class="blog-intro-sub">
+        <span data-en>Chen Yi-Zhong · Notes</span>
+        <span data-zh>陳一中 · 筆記</span>
+        <span data-es>Chen Yi-Zhong · Notas</span>
+      </div>
+      <p class="blog-intro-line">
+        <span data-en>Notes on robotics, Physical AI, and building things — written as I go.</span>
+        <span data-zh>關於機器人、Physical AI 與打造東西的筆記——邊做邊寫。</span>
+        <span data-es>Notas sobre robótica, Physical AI y construir cosas — escritas en el camino.</span>
+      </p>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2026</div>
+
+      <!-- Post: Why don't these robots crash (newest DAM series) -->
+      <div class="post-row" id="p-cbf">
+        <div class="post-summary" onclick="toggle('p-cbf')">
+          <span class="post-date">Jun</span>
+          <span class="post-title">
+            <span class="live-dot"></span>
+            <span data-en>Why don't these robots crash into each other?</span>
+            <span data-zh>這些機器人為什麼不會互相撞？</span>
+            <span data-es>¿Por qué estos robots no chocan entre sí?</span>
+          </span>
+          <span class="post-toggle"><i class="ti ti-plus"></i></span>
+          <span class="post-excerpt">
+            <span data-en>No rules. No communication between robots. Just math that keeps them safe — a demo from the DAM project.</span>
+            <span data-zh>沒有規則，機器人之間沒有通訊，只靠數學讓它們保持安全——DAM 專案的展示。</span>
+            <span data-es>Sin reglas. Sin comunicación entre robots. Solo matemáticas que los mantienen seguros — una demo del proyecto DAM.</span>
+          </span>
+        </div>
+        <div class="post-body">
+          <div class="post-body-text">
+            <p>
+              <span data-en>These robots never learned how to cooperate. Yet they still coordinate.</span>
+              <span data-zh>這些機器人從來沒有學過如何合作。但它們仍然協調了。</span>
+              <span data-es>Estos robots nunca aprendieron a cooperar. Sin embargo, se coordinan.</span>
+            </p>
+            <p>
+              <span data-en>Coordination can emerge naturally from mathematical constraints and optimization. The idea is to use a mathematical safety filter. The robot already has its original action, and the controller modifies it into a safer action while satisfying safety constraints.</span>
+              <span data-zh>協調可以從數學約束和最佳化中自然浮現。這個想法是使用一個數學安全過濾器——機器人原本已有自己的動作，控制器在滿足安全約束的前提下，將其修改為更安全的動作。</span>
+              <span data-es>La coordinación puede emerger naturalmente de restricciones matemáticas y optimización. La idea es usar un filtro de seguridad matemático. El robot ya tiene su acción original, y el controlador la modifica en una acción más segura satisfaciendo las restricciones de seguridad.</span>
+            </p>
+            <p>
+              <span data-en>This concept comes from Control Barrier Function (CBF) and optimization-based control. The interesting part is that behaviors like yielding, sidestepping, and passing through each other can appear naturally from the optimization process, without manually designing every interaction rule.</span>
+              <span data-zh>這個概念來自控制障礙函數（CBF）與基於最佳化的控制。有趣的地方在於，讓路、閃避、互相穿越等行為，可以從最佳化過程中自然浮現，不需要手動設計每一種互動規則。</span>
+              <span data-es>Este concepto proviene de la Control Barrier Function (CBF) y el control basado en optimización. Lo interesante es que comportamientos como ceder el paso, esquivar y cruzarse pueden aparecer naturalmente del proceso de optimización, sin diseñar manualmente cada regla de interacción.</span>
+            </p>
+            <p>
+              <span data-en>However, the challenge is not only safety. Avoiding collisions does not mean robots can always complete the task. Symmetric deadlocks, robots continuously yielding to each other, getting stuck in local minima, narrow passages becoming blocked — these are difficult problems in multi-robot coordination I've considered when making this demo.</span>
+              <span data-zh>然而，挑戰不只是安全而已。避免碰撞並不代表機器人永遠能完成任務。對稱死鎖、機器人互相不斷讓路、陷入局部最小值、狹窄通道被堵塞——這些都是我在製作這個展示時思考過的多機器人協調難題。</span>
+              <span data-es>Sin embargo, el desafío no es solo la seguridad. Evitar colisiones no significa que los robots siempre puedan completar la tarea. Deadlocks simétricos, robots cediéndose el paso continuamente, quedarse atrapado en mínimos locales, pasillos estrechos bloqueados — son problemas difíciles en coordinación multi-robot que he considerado al hacer esta demo.</span>
+            </p>
+            <p>
+              <span data-en>My current work is to implement and integrate these existing control concepts into a multi-robot system, and explore how coordinated behaviors can emerge with fewer handcrafted rules. The more I learn about these methods, the more I realize how elegant the mathematics behind them are.</span>
+              <span data-zh>我目前的工作是將這些現有的控制概念實作並整合進多機器人系統，探索如何在更少手工規則的情況下，讓協調行為自然浮現。我越深入了解這些方法，就越能感受到其背後數學的優雅。</span>
+              <span data-es>Mi trabajo actual es implementar e integrar estos conceptos de control en un sistema multi-robot, y explorar cómo los comportamientos coordinados pueden emerger con menos reglas artesanales. Cuanto más aprendo sobre estos métodos, más me doy cuenta de la elegancia de las matemáticas detrás de ellos.</span>
+            </p>
+          </div>
+          <div class="post-embed">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7476473475638165504?compact=1" height="399" width="504" frameborder="0" allowfullscreen title="Embedded post" loading="lazy"></iframe>
+            <div class="post-embed-caption">
+              <span data-en>Multi-robot CBF coordination · Isaac Sim · DAM series</span>
+              <span data-zh>多機器人 CBF 協調 · Isaac Sim · DAM 系列</span>
+              <span data-es>Coordinación CBF multi-robot · Isaac Sim · serie DAM</span>
+            </div>
+          </div>
+          <div class="post-chips">
+            <span class="post-chip">CBF</span>
+            <span class="post-chip">ROS2</span>
+            <span class="post-chip">Isaac Sim</span>
+            <span class="post-chip">DAM</span>
+          </div>
+          <div class="post-actions">
+            <a href="https://github.com/ez945y/DAM" target="_blank" class="post-action">
+              <i class="ti ti-brand-github"></i>GitHub — DAM
+            </a>
+          </div>
+          <p class="post-cite">A. D. Ames, X. Xu, J. W. Grizzle and P. Tabuada, "Control Barrier Function Based Quadratic Programs for Safety Critical Systems," <em>IEEE Transactions on Automatic Control</em>, 2017</p>
+        </div>
+      </div>
+
+      <!-- Post: Sensor attacks (prev DAM series) -->
+      <div class="post-row" id="p-sensor">
+        <div class="post-summary" onclick="toggle('p-sensor')">
+          <span class="post-date">Jun</span>
+          <span class="post-title">
+            <span data-en>What if attackers target the sensors, not the AI?</span>
+            <span data-zh>如果攻擊者瞄準的是感測器，而不是 AI？</span>
+            <span data-es>¿Y si los atacantes apuntan a los sensores, no a la IA?</span>
+          </span>
+          <span class="post-toggle"><i class="ti ti-plus"></i></span>
+          <span class="post-excerpt">
+            <span data-en>A lot of people focus on protecting the model itself. But in the real world, an attacker might not even need to touch the AI.</span>
+            <span data-zh>很多人專注於保護模型本身。但在現實世界中，攻擊者可能根本不需要碰它。</span>
+            <span data-es>Mucha gente se enfoca en proteger el modelo. Pero en el mundo real, un atacante puede que ni siquiera necesite tocarlo.</span>
+          </span>
+        </div>
+        <div class="post-body">
+          <div class="post-body-text">
+            <p>
+              <span data-en>What if someone doesn't attack the AI, but attacks its sensors instead?</span>
+              <span data-zh>如果有人不攻擊 AI 本身，而是攻擊它的感測器呢？</span>
+              <span data-es>¿Qué pasa si alguien no ataca la IA, sino sus sensores?</span>
+            </p>
+            <p>
+              <span data-en>A lot of people focus on protecting the model itself, but in the real world, an attacker might not even need to touch the AI. For example, they could use strong light or specific lighting conditions to blind the vision system or create "ghost" obstacles that don't actually exist. They could also use ultrasonic resonance to interfere with IMUs and distance sensors, affecting localization and perception. Even if the AI model is working perfectly, bad sensor data can still lead to bad decisions.</span>
+              <span data-zh>很多人專注於保護模型本身，但在現實世界中，攻擊者可能根本不需要碰 AI。例如，他們可以用強光或特定光線條件讓視覺系統失盲，或製造出根本不存在的「幽靈」障礙物。他們也可以用超音波共振干擾 IMU 和距離感測器，影響定位與感知。就算 AI 模型本身運作完美，壞的感測器數據仍然會導致錯誤決策。</span>
+              <span data-es>Mucha gente se enfoca en proteger el modelo, pero en el mundo real un atacante puede que ni necesite tocarlo. Por ejemplo, podría usar luz intensa o condiciones específicas de iluminación para cegar el sistema de visión o crear obstáculos "fantasma" que no existen. También podría usar resonancia ultrasónica para interferir con IMUs y sensores de distancia. Incluso si el modelo funciona perfectamente, datos de sensor incorrectos llevan a malas decisiones.</span>
+            </p>
+            <p>
+              <span data-en>That's one of the reasons I'm building DAM. Instead of blindly trusting sensor inputs and model outputs, DAM adds an extra validation layer to check whether the data is reasonable, consistent, and safe before actions are taken. The extra computation cost is tiny compared to the cost of a wrong decision in the real world.</span>
+              <span data-zh>這是我建構 DAM 的原因之一。DAM 不盲目信任感測器輸入與模型輸出，而是在採取動作之前，加入額外的驗證層來確認數據是否合理、一致且安全。這點額外的運算成本，比起在真實世界中做出錯誤決策的代價，實在微不足道。</span>
+              <span data-es>Por eso estoy construyendo DAM. En lugar de confiar ciegamente en los sensores y en los outputs del modelo, DAM añade una capa de validación extra para verificar si los datos son razonables, consistentes y seguros antes de actuar. El costo computacional extra es mínimo comparado con el costo de una mala decisión en el mundo real.</span>
+            </p>
+            <p>
+              <span data-en>Also, I really want to add a walking animation soon, but I'm still trying to figure out how to set up the dependencies for IRA in Isaac Sim 6.0. Haven't fully wrapped my head around that part yet 😅</span>
+              <span data-zh>另外，我很想快點加上步行動畫，但目前還在摸索如何在 Isaac Sim 6.0 中設定 IRA 的相依套件，這部分還沒完全搞懂 😅</span>
+              <span data-es>Además, tengo muchas ganas de añadir una animación de caminar pronto, pero todavía estoy intentando configurar las dependencias de IRA en Isaac Sim 6.0. Aún no lo tengo del todo claro 😅</span>
+            </p>
+          </div>
+          <div class="post-embed">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7472308651945496576?compact=1" height="399" width="504" frameborder="0" allowfullscreen title="Embedded post" loading="lazy"></iframe>
+            <div class="post-embed-caption">
+              <span data-en>Sensor attack demo · DAM series</span>
+              <span data-zh>感測器攻擊展示 · DAM 系列</span>
+              <span data-es>Demo de ataque a sensores · serie DAM</span>
+            </div>
+          </div>
+          <div class="post-chips">
+            <span class="post-chip">Security</span>
+            <span class="post-chip">Sensor attacks</span>
+            <span class="post-chip">DAM</span>
+          </div>
+          <p class="post-cite">Abdul Kareem Shaik, Alireza Mohammadi, Hafiz Malik, "A Systematic Review of Sensor Vulnerabilities and Cyber-Physical Threats in Industrial Robotic Systems," <em>IET</em>, 2025</p>
+        </div>
+      </div>
+
+      <div class="post-row" id="p-rl">
+        <div class="post-summary" onclick="toggle('p-rl')">
+          <span class="post-date">Jan</span>
+          <span class="post-title">
+            <span class="live-dot"></span>
+            <span data-en>Robot learning journal</span>
+            <span data-zh>機器人學習實驗記錄</span>
+            <span data-es>Diario de aprendizaje robótico</span>
+          </span>
+          <span class="post-toggle"><i class="ti ti-plus"></i></span>
+          <span class="post-excerpt">
+            <span data-en>Notes from experimenting with RL, imitation learning, and the sim-to-real gap using Isaac Lab and LeRobot.</span>
+            <span data-zh>使用 Isaac Lab 與 LeRobot 實驗強化學習、模仿學習與模擬真實落差的筆記。</span>
+            <span data-es>Notas de experimentos con RL, aprendizaje por imitación y la brecha sim-to-real con Isaac Lab y LeRobot.</span>
+          </span>
+        </div>
+        <div class="post-body">
+          <div class="post-body-text">
+            <p>
+              <span data-en>A living document covering RL environments in Isaac Lab, imitation learning with LeRobot, and the awkward gap between what works in simulation and what survives contact with reality.</span>
+              <span data-zh>持續更新的記錄，涵蓋 Isaac Lab 中的強化學習環境、使用 LeRobot 的模仿學習，以及模擬中有效的方法與現實接觸後能存活的方法之間那個尷尬的落差。</span>
+              <span data-es>Un documento vivo que cubre entornos RL en Isaac Lab, aprendizaje por imitación con LeRobot, y la brecha entre lo que funciona en simulación y lo que sobrevive el contacto con la realidad.</span>
+            </p>
+            <p>
+              <span data-en>I'm particularly interested in how digital twins can compress that gap — a high-fidelity simulation not just for training, but as a continuous monitor of real-world behavior.</span>
+              <span data-zh>我對數位孿生如何縮小這個落差特別感興趣——不只是用於訓練，而是將高精度模擬作為持續監控真實世界行為的工具。</span>
+              <span data-es>Me interesa especialmente cómo los gemelos digitales pueden comprimir esa brecha — usando una simulación de alta fidelidad no solo para entrenamiento, sino como monitor continuo del comportamiento en el mundo real.</span>
+            </p>
+          </div>
+          <div class="post-chips">
+            <span class="post-chip">Isaac Lab</span>
+            <span class="post-chip">LeRobot</span>
+            <span class="post-chip">RL / IL</span>
+            <span class="post-chip">Digital Twins</span>
+          </div>
+          <div class="post-actions">
+            <a href="https://github.com/ez945y" target="_blank" class="post-action">
+              <i class="ti ti-brand-github"></i>GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2024</div>
+
+      <div class="post-row" id="p-npu">
+        <div class="post-summary" onclick="toggle('p-npu')">
+          <span class="post-date">Nov</span>
+          <span class="post-title">
+            <span data-en>NPU vision platform — Embedded World, Computex, IBC</span>
+            <span data-zh>NPU 視覺平台 — Embedded World、Computex、IBC</span>
+            <span data-es>Plataforma de visión NPU — Embedded World, Computex, IBC</span>
+          </span>
+          <span class="post-toggle"><i class="ti ti-plus"></i></span>
+          <span class="post-excerpt">
+            <span data-en>An industry-academia project at Brinno that ended up shown at three international trade shows.</span>
+            <span data-zh>在 Brinno 的產學合作專案，最後在三個國際展覽中展出。</span>
+            <span data-es>Un proyecto academia-empresa en Brinno que terminó siendo presentado en tres ferias internacionales.</span>
+          </span>
+        </div>
+        <div class="post-body">
+          <div class="post-body-text">
+            <p>
+              <span data-en>Integrating training and deployment of low-power NPU image recognition models into an all-in-one device management platform. I worked on the AI-to-web layer — Next.js frontend, FastAPI backend, containerized on AWS EC2.</span>
+              <span data-zh>將低功耗 NPU 影像辨識模型的訓練與部署整合進全合一設備管理平台。我負責 AI 與網頁的整合層——Next.js 前端、FastAPI 後端，Docker 容器化部署於 AWS EC2。</span>
+              <span data-es>Integrar el entrenamiento y despliegue de modelos NPU de bajo consumo en una plataforma de gestión todo-en-uno. Trabajé en la capa AI-to-web — frontend Next.js, backend FastAPI, en AWS EC2.</span>
+            </p>
+            <p>
+              <span data-en>Exhibited at Embedded World 2025 & 2026 (Nuremberg), Computex 2025 (Taipei), and IBC 2025 (Amsterdam). Running a product at actual trade show booths is a different kind of stress test.</span>
+              <span data-zh>展示於 Embedded World 2025 & 2026（紐倫堡）、Computex 2025（台北）與 IBC 2025（阿姆斯特丹）。在真實展覽攤位上運行產品，是完全不同類型的壓力測試。</span>
+              <span data-es>Exhibido en Embedded World 2025 & 2026 (Núremberg), Computex 2025 (Taipei) e IBC 2025 (Ámsterdam). Ejecutar un producto en stands reales es un tipo de prueba de estrés muy diferente.</span>
+            </p>
+          </div>
+          <div class="post-chips">
+            <span class="post-chip">Next.js</span>
+            <span class="post-chip">FastAPI</span>
+            <span class="post-chip">NPU</span>
+            <span class="post-chip">AWS EC2</span>
+            <span class="post-chip">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-row" id="p-rag">
+        <div class="post-summary" onclick="toggle('p-rag')">
+          <span class="post-date">Dec</span>
+          <span class="post-title">
+            <span data-en>RAG for code, and what I learned presenting to 160 engineers</span>
+            <span data-zh>RAG 用於程式碼，以及我在對 160 位工程師演講時學到的事</span>
+            <span data-es>RAG para código, y lo que aprendí presentando ante 160 ingenieros</span>
+          </span>
+          <span class="post-toggle"><i class="ti ti-plus"></i></span>
+          <span class="post-excerpt">
+            <span data-en>At Taiwan Mobile, I built a RAG system that turned a codebase into a conversational onboarding interface.</span>
+            <span data-zh>在台灣大哥大，我建構了一個 RAG 系統，將程式碼庫轉化為用於新人上手的對話介面。</span>
+            <span data-es>En Taiwan Mobile, construí un sistema RAG que convirtió una base de código en una interfaz conversacional para onboarding.</span>
+          </span>
+        </div>
+        <div class="post-body">
+          <div class="post-body-text">
+            <p>
+              <span data-en>The system generated a chatbot from project source code — new engineers could ask it questions about the codebase instead of digging through documentation. It also produced handover tutorials automatically.</span>
+              <span data-zh>這個系統從專案原始碼生成了聊天機器人——新進工程師可以直接詢問程式碼庫的問題，而不必翻閱文件。它也能自動生成交接教學。</span>
+              <span data-es>El sistema generó un chatbot a partir del código fuente — los nuevos ingenieros podían hacerle preguntas sobre el código en lugar de buscar en la documentación. También generaba tutoriales de traspaso automáticamente.</span>
+            </p>
+            <p>
+              <span data-en>Presenting to 160+ colleagues taught me something about the difference between having an idea work and getting others to trust it. Technical correctness is necessary but not enough.</span>
+              <span data-zh>對 160 多位同事演講，讓我學到了一件事：讓一個想法奏效，和讓其他人相信它，是兩件截然不同的事。技術上正確是必要的，但還不夠。</span>
+              <span data-es>Presentar ante 160+ colegas me enseñó algo sobre la diferencia entre hacer que una idea funcione y lograr que otros confíen en ella. La corrección técnica es necesaria pero no suficiente.</span>
+            </p>
+          </div>
+          <div class="post-chips">
+            <span class="post-chip">RAG</span>
+            <span class="post-chip">Python</span>
+            <span class="post-chip">LLM</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="height:4rem;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ABOUT VIEW
+════════════════════════════════════════ -->
+<div class="view" id="view-about">
+  <div class="col">
+    <div class="about-view">
+      <h1>
+        <span data-en>Chen Yi-Zhong</span>
+        <span data-zh>陳一中</span>
+        <span data-es>Chen Yi-Zhong</span>
+      </h1>
+      <p class="tagline">
+        <span data-en>Mike — M.S. Candidate at NTUT · New Taipei, Taiwan</span>
+        <span data-zh>Mike — 台北科技大學碩士生 · 新北市，台灣</span>
+        <span data-es>Mike — Candidato a máster, NTUT · Nueva Taipei, Taiwán</span>
+      </p>
+
+      <div class="about-prose">
+        <p>
+          <span data-en>I'm a master's student in Information Security at <a href="https://www.ntut.edu.tw" target="_blank">NTUT</a>, working on robot safety, digital twins, and the sim-to-real pipeline with NVIDIA Isaac Sim / Lab.</span>
+          <span data-zh>我是<a href="https://www.ntut.edu.tw" target="_blank">台北科技大學</a>資訊安全系的碩士生，研究機器人安全、數位孿生，以及使用 NVIDIA Isaac Sim / Lab 的模擬到真實管線。</span>
+          <span data-es>Soy estudiante de máster en Seguridad de la Información en la <a href="https://www.ntut.edu.tw" target="_blank">NTUT</a>, trabajando en seguridad robótica, gemelos digitales y el pipeline sim-to-real con NVIDIA Isaac Sim / Lab.</span>
+        </p>
+        <p>
+          <span data-en>Before robotics, I worked at Taiwan Mobile — building a RAG-based code assistant, doing Gaussian Splatting research, and running QA automation for the M+ app. Currently at Brinno working on Edge AI and device management.</span>
+          <span data-zh>在投入機器人研究之前，我在台灣大哥大實習——建構 RAG 程式碼助理、做 Gaussian Splatting 研究，以及為 M+ App 開發 QA 自動化測試。目前在 Brinno 從事邊緣 AI 與設備管理的工作。</span>
+          <span data-es>Antes de la robótica, trabajé en Taiwan Mobile — construyendo un asistente de código RAG, haciendo investigación en Gaussian Splatting y ejecutando automatización QA para la app M+. Actualmente en Brinno en Edge AI y gestión de dispositivos.</span>
+        </p>
+        <p>
+          <span data-en>I want to become a Digital Twin Engineer — someone who bridges the gap between what works in simulation and what holds up in the physical world.</span>
+          <span data-zh>我想成為一名數位孿生工程師——一個能弭平模擬世界與實體世界之間落差的人。</span>
+          <span data-es>Quiero convertirme en un Ingeniero de Gemelos Digitales — alguien que cierre la brecha entre lo que funciona en simulación y lo que aguanta en el mundo físico.</span>
+        </p>
+      </div>
+
+      <p class="about-prose" style="margin-top:0;">
+        <span data-en>"Insight builds with accumulation, and wisdom is forged each night."</span>
+        <span data-zh>「洞察由積累而生，智慧於每夜錘鍊。」</span>
+        <span data-es>"La perspicacia se construye con la acumulación, y la sabiduría se forja cada noche."</span>
+      </p>
+
+      <div class="about-h">
+        <span data-en>Experience</span><span data-zh>經歷</span><span data-es>Experiencia</span>
+      </div>
+      <div class="plain-exp">
+        <div class="plain-exp-row">
+          <span class="plain-date"><span class="now-dot">●</span>2024 – <span data-en>Now</span><span data-zh>至今</span><span data-es>Hoy</span></span>
+          <span>
+            <div class="plain-role"><span data-en>Full Stack Engineer, Brinno</span><span data-zh>全端工程師，Brinno</span><span data-es>Ingeniero Full Stack, Brinno</span></div>
+            <div class="plain-co"><span data-en>Internship</span><span data-zh>實習</span><span data-es>Prácticas</span></div>
+          </span>
+        </div>
+        <div class="plain-exp-row">
+          <span class="plain-date">2023 – 2024</span>
+          <span>
+            <div class="plain-role"><span data-en>PoC Engineer, Taiwan Mobile</span><span data-zh>概念驗證工程師，台灣大哥大</span><span data-es>Ingeniero PoC, Taiwan Mobile</span></div>
+            <div class="plain-co"><span data-en>Internship · Monthly Honor Award · Kepler GM Bonus</span><span data-zh>實習 · 月度榮耀獎 · 克卜勒總經理加碼獎</span><span data-es>Prácticas · Premio Mensual · Bono GM Kepler</span></div>
+          </span>
+        </div>
+        <div class="plain-exp-row">
+          <span class="plain-date">2023</span>
+          <span>
+            <div class="plain-role"><span data-en>QA Automation Engineer, Taiwan Mobile</span><span data-zh>QA 自動化工程師，台灣大哥大</span><span data-es>Ingeniero QA, Taiwan Mobile</span></div>
+            <div class="plain-co"><span data-en>Internship</span><span data-zh>實習</span><span data-es>Prácticas</span></div>
+          </span>
+        </div>
+      </div>
+
+      <div class="about-h">
+        <span data-en>Languages</span><span data-zh>語言</span><span data-es>Idiomas</span>
+      </div>
+      <div class="lang-plain">
+        <div class="lang-row-plain">
+          <span><span data-en>Mandarin Chinese</span><span data-zh>中文（繁體）</span><span data-es>Chino mandarín</span></span>
+          <span><span data-en>Native</span><span data-zh>母語</span><span data-es>Nativo</span></span>
+        </div>
+        <div class="lang-row-plain">
+          <span><span data-en>Taiwanese</span><span data-zh>台語</span><span data-es>Taiwanés</span></span>
+          <span><span data-en>Native</span><span data-zh>母語</span><span data-es>Nativo</span></span>
+        </div>
+        <div class="lang-row-plain">
+          <span>English</span>
+          <span><span data-en>Conversational</span><span data-zh>會話</span><span data-es>Conversacional</span></span>
+        </div>
+        <div class="lang-row-plain">
+          <span>Español</span>
+          <span><span data-en>Basic</span><span data-zh>基礎</span><span data-es>Básico</span></span>
+        </div>
+      </div>
+
+      <div class="about-h">
+        <span data-en>Links</span><span data-zh>連結</span><span data-es>Vínculos</span>
+      </div>
+      <div class="about-links">
+        <a href="https://www.linkedin.com/in/mikechenyz/" target="_blank" class="about-link">
+          <i class="ti ti-brand-linkedin"></i>linkedin.com/in/mikechenyz
+        </a>
+        <a href="https://github.com/ez945y" target="_blank" class="about-link">
+          <i class="ti ti-brand-github"></i>github.com/ez945y
+        </a>
+        <a href="mailto:ez945y@gmail.com" class="about-link">
+          <i class="ti ti-mail"></i>ez945y@gmail.com
+        </a>
+        <a href="./YIZHONG_CHEN_CV.pdf" target="_blank" class="about-link">
+          <i class="ti ti-download"></i>
+          <span data-en>Resume (PDF)</span><span data-zh>履歷下載（PDF）</span><span data-es>CV (PDF)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© 2026 Chen Yi-Zhong</span>
+    <a href="mailto:ez945y@gmail.com">ez945y@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  // load photo if it exists
+  const img = new Image();
+  img.onload = () => {
+    const box = document.getElementById('hero-avatar-box');
+    box.innerHTML = '';
+    const el = document.createElement('img');
+    el.src = './mike.jpg';
+    el.alt = 'Chen Yi-Zhong';
+    box.appendChild(el);
+  };
+  img.src = './mike.jpg';
+
+  function showView(name, e) {
+    if (e) e.preventDefault();
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + name).classList.add('active');
+    document.querySelectorAll('.h-nav-link').forEach(t => t.classList.remove('active'));
+    const tab = document.getElementById('tab-' + name);
+    if (tab) tab.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggle(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function toggleProject(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function openNote(id, e) {
+    if (e) e.preventDefault();
+    showView('notes', null);
+    const el = document.getElementById(id);
+    if (el && !el.classList.contains('open')) el.classList.add('open');
+    setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+  }
+
+  function setLang(l) {
+    document.body.className = 'lang-' + l;
+    document.documentElement.lang = l === 'zh' ? 'zh-TW' : l;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('on'));
+    document.getElementById('opt-' + l).classList.add('on');
+  }
+</script>
+</body>
+</html>
