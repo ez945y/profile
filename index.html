@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chen Yi-Zhong</title>
+  <meta name="description" content="Chen Yi-Zhong — M.S. Candidate at NTUT, researching safety layers for robot systems. Physical AI, digital twins, sim-to-real gap." />
+  <meta property="og:title" content="Chen Yi-Zhong" />
+  <meta property="og:description" content="M.S. Candidate at NTUT · Physical AI Safety · Building DAM, a detachable action monitor for robot systems." />
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1Rt9OVWTmQqR9YCN33B_moV46egpeH24a" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ez945y.github.io/profile/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chen Yi-Zhong" />
+  <meta name="twitter:description" content="M.S. Candidate at NTUT · Physical AI Safety · Building DAM, a detachable action monitor for robot systems." />
+  <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1Rt9OVWTmQqR9YCN33B_moV46egpeH24a" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
@@ -430,8 +442,7 @@
        NOTES VIEW (full blog list)
     ══════════════════════════════════════ */
     .blog-intro {
-      padding: 3rem 0 2.5rem;
-      border-bottom: 1px solid var(--line);
+      padding: 0 0 1.5rem;
       max-width: 540px;
     }
     .blog-intro-sub {
@@ -562,18 +573,37 @@
     .post-action i { font-size: 14px; }
     .post-action:hover { border-color: var(--green); }
 
-    /* ══════════════════════════════════════
-       ABOUT VIEW
-    ══════════════════════════════════════ */
-    .about-view { padding: 3.5rem 0 5rem; max-width: 600px; }
-    .about-view h1 {
+    /* ── SHARED VIEW HEADER ── */
+    .view-heading {
       font-size: 22px;
       font-weight: 400;
       color: var(--ink);
-      margin-bottom: 0.2rem;
       letter-spacing: -0.01em;
+      padding: 0.75rem 0 1.25rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 1.5rem;
     }
-    body.lang-zh .about-view h1 { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.06em; }
+    body.lang-zh .view-heading { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.04em; }
+    .view-subhead {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .view-subhead-name {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .view-subhead-nick {
+      font-size: 13px;
+      color: var(--ink3);
+    }
+
+    /* ══════════════════════════════════════
+       ABOUT VIEW
+    ══════════════════════════════════════ */
+    .about-view { padding: 0 0 5rem; max-width: 600px; }
     .about-view .tagline {
       font-size: 13.5px;
       color: var(--orange);
@@ -592,14 +622,15 @@
     .about-prose a:hover { border-color: var(--green); }
 
     .about-h {
-      font-size: 11px;
-      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--ink3);
+      color: var(--ink);
       margin-bottom: 1rem;
       margin-top: 2.25rem;
     }
-    body.lang-zh .about-h { text-transform: none; letter-spacing: 0.06em; }
+    body.lang-zh .about-h { text-transform: none; letter-spacing: 0.04em; }
 
     .plain-exp { margin-bottom: 0; }
     .plain-exp-row {
@@ -616,14 +647,15 @@
     .plain-co { color: var(--ink3); font-size: 12px; margin-top: 1px; }
     .now-dot { color: var(--orange); margin-right: 4px; }
     .cert-group-label {
-      font-size: 10.5px;
-      letter-spacing: 0.1em;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--green-dim);
+      color: var(--green);
       padding: 1.1rem 0 0.25rem;
       border-top: 1px solid var(--line);
     }
-    body.lang-zh .cert-group-label { text-transform: none; letter-spacing: 0.06em; }
+    body.lang-zh .cert-group-label { text-transform: none; letter-spacing: 0.04em; }
 
     .lang-plain { display: flex; flex-direction: column; }
     .lang-row-plain {
@@ -705,9 +737,6 @@
 <!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="#" class="site-name" onclick="showView('home',event)" title="Home">
-      <i class="ti ti-home"></i>
-    </a>
     <div class="header-right">
       <button class="h-nav-link active" id="tab-home" onclick="showView('home',event)">
         <span data-en>Home</span><span data-zh>首頁</span><span data-es>Inicio</span>
@@ -763,15 +792,14 @@
           <a href="mailto:ez945y@gmail.com" class="hero-link">
             <i class="ti ti-mail"></i>ez945y@gmail.com
           </a>
-          <a href="./YIZHONG_CHEN_CV.pdf" target="_blank" class="hero-link">
+          <a href="https://drive.google.com/uc?export=download&id=1PrFNsoeRG82_5G0UrG1wFulGYmqMJbZ0" target="_blank" class="hero-link">
             <i class="ti ti-download"></i>
             <span data-en>Resume</span><span data-zh>履歷</span><span data-es>CV</span>
           </a>
         </div>
       </div>
       <div class="hero-avatar" id="hero-avatar-box">
-        <!-- drop a photo at ./photo.jpg to replace this placeholder -->
-        <span style="font-size:11px;letter-spacing:0.06em;color:var(--ink3)">PHOTO</span>
+        <img src="https://lh3.googleusercontent.com/d/1Rt9OVWTmQqR9YCN33B_moV46egpeH24a" alt="Chen Yi-Zhong" />
       </div>
     </div>
 
@@ -909,7 +937,7 @@
           </div>
           <div class="project-footer">
             <div class="project-actions">
-              <a href="https://github.com/ez945y" target="_blank" class="project-action" onclick="event.stopPropagation()">
+              <a href="https://github.com/ez945y/ISAAC_LAB_ROBOT_TRAINING" target="_blank" class="project-action" onclick="event.stopPropagation()">
                 <i class="ti ti-brand-github"></i>GitHub
               </a>
             </div>
@@ -957,11 +985,9 @@
   <div class="col">
 
     <div class="blog-intro">
-      <div class="blog-intro-sub">
-        <span data-en>Chen Yi-Zhong · Notes</span>
-        <span data-zh>陳一中 · 筆記</span>
-        <span data-es>Chen Yi-Zhong · Notas</span>
-      </div>
+      <h1 class="view-heading">
+        <span data-en>Notes</span><span data-zh>筆記</span><span data-es>Notas</span>
+      </h1>
       <p class="blog-intro-line">
         <span data-en>Notes on robotics, Physical AI, and building things — written as I go.</span>
         <span data-zh>關於機器人、Physical AI 與打造東西的筆記——邊做邊寫。</span>
@@ -1035,7 +1061,7 @@
             <a href="https://github.com/ez945y/DAM" target="_blank" class="post-action">
               <i class="ti ti-brand-github"></i>DAM
             </a>
-            <a href="https://github.com/ez945y" target="_blank" class="post-action">
+            <a href="https://github.com/ez945y/ISAAC_LAB_ROBOT_TRAINING" target="_blank" class="post-action">
               <i class="ti ti-brand-github"></i>Robot practice
             </a>
           </div>
@@ -1099,7 +1125,7 @@
             <a href="https://github.com/ez945y/DAM" target="_blank" class="post-action">
               <i class="ti ti-brand-github"></i>DAM
             </a>
-            <a href="https://github.com/ez945y" target="_blank" class="post-action">
+            <a href="https://github.com/ez945y/ISAAC_LAB_ROBOT_TRAINING" target="_blank" class="post-action">
               <i class="ti ti-brand-github"></i>Robot practice
             </a>
           </div>
@@ -1404,16 +1430,13 @@
 <div class="view" id="view-about">
   <div class="col">
     <div class="about-view">
-      <h1>
-        <span data-en>Chen Yi-Zhong</span>
-        <span data-zh>陳一中</span>
-        <span data-es>Chen Yi-Zhong</span>
+      <h1 class="view-heading">
+        <span data-en>About</span><span data-zh>關於</span><span data-es>Sobre mí</span>
       </h1>
-      <p class="tagline">
-        <span data-en>Mike — M.S. Candidate at NTUT · New Taipei, Taiwan</span>
-        <span data-zh>Mike — 台北科技大學碩士生 · 新北市，台灣</span>
-        <span data-es>Mike — Candidato a máster, NTUT · Nueva Taipei, Taiwán</span>
-      </p>
+      <div class="view-subhead">
+        <span class="view-subhead-name">Chen Yi-Zhong</span>
+        <span class="view-subhead-nick">Mike</span>
+      </div>
 
       <div class="about-prose">
         <p>
@@ -1487,10 +1510,7 @@
           <span><span data-en>Mandarin Chinese</span><span data-zh>中文（繁體）</span><span data-es>Chino mandarín</span></span>
           <span><span data-en>Native</span><span data-zh>母語</span><span data-es>Nativo</span></span>
         </div>
-        <div class="lang-row-plain">
-          <span><span data-en>Taiwanese</span><span data-zh>台語</span><span data-es>Taiwanés</span></span>
-          <span><span data-en>Native</span><span data-zh>母語</span><span data-es>Nativo</span></span>
-        </div>
+
         <div class="lang-row-plain">
           <span>English</span>
           <span><span data-en>Conversational</span><span data-zh>會話</span><span data-es>Conversacional</span></span>
@@ -1574,7 +1594,7 @@
         <a href="mailto:ez945y@gmail.com" class="about-link">
           <i class="ti ti-mail"></i>ez945y@gmail.com
         </a>
-        <a href="./YIZHONG_CHEN_CV.pdf" target="_blank" class="about-link">
+        <a href="https://drive.google.com/uc?export=download&id=1PrFNsoeRG82_5G0UrG1wFulGYmqMJbZ0" target="_blank" class="about-link">
           <i class="ti ti-download"></i>
           <span data-en>Resume (PDF)</span><span data-zh>履歷下載（PDF）</span><span data-es>CV (PDF)</span>
         </a>
@@ -1592,17 +1612,19 @@
 </footer>
 
 <script>
-  // load photo if it exists
-  const img = new Image();
-  img.onload = () => {
-    const box = document.getElementById('hero-avatar-box');
-    box.innerHTML = '';
-    const el = document.createElement('img');
-    el.src = './mike.jpg';
-    el.alt = 'Chen Yi-Zhong';
-    box.appendChild(el);
-  };
-  img.src = './mike.jpg';
+  // mobile avatar scroll reveal
+  (function() {
+    const avatar = document.getElementById('hero-avatar-box');
+    if (!avatar) return;
+    function checkScroll() {
+      if (window.innerWidth <= 640 && window.scrollY > 60) {
+        avatar.classList.add('avatar-visible');
+      }
+    }
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    // on desktop always visible (no opacity override)
+    if (window.innerWidth > 640) avatar.classList.add('avatar-visible');
+  })();
 
   function buildRecentNotes(n) {
     const list = document.getElementById('recent-notes-list');
